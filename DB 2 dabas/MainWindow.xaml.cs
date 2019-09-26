@@ -25,6 +25,7 @@ namespace DB_2_dabas
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool showChoice = false;
         private ObservableCollection<Planai> _planais;
         
         public ObservableCollection<Planai> planais
@@ -120,5 +121,17 @@ namespace DB_2_dabas
         }
 
         #endregion
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            showChoice = !showChoice;
+            if(showChoice)
+            {
+                PasirinkimaiUC.Visibility = Visibility.Visible;
+            }else
+            {
+                PasirinkimaiUC.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

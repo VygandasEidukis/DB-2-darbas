@@ -46,10 +46,6 @@
     </Window.Resources>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="107*" />
-            <ColumnDefinition Width="25*" />
-        </Grid.ColumnDefinitions>
         <TextBox
             x:Name="Pokalbiai"
             Width="159"
@@ -59,6 +55,7 @@
             VerticalAlignment="Top"
             PreviewTextInput="TextBox_PreviewTextInput"
             TextWrapping="Wrap" />
+
         <TextBox
             x:Name="Minutes"
             Width="159"
@@ -97,8 +94,8 @@
             ItemTemplate="{StaticResource listBoxTemplate}"
             MouseDoubleClick="ListVisiPlanai_MouseDoubleClick" />
         <Button
-            Width="75"
-            Margin="47,302,0,0"
+            Width="159"
+            Margin="10,302,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Click="Button_Click"
@@ -164,6 +161,100 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextWrapping="Wrap" />
+        <UserControl x:Name="PasirinkimaiUC" Visibility="Visible">
+            <Grid
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="#33000000">
+                <Grid
+                    MinWidth="200"
+                    MinHeight="100"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="#FFFFFF">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Background="#EEEEEE">
+                        <Label
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="Pasirinkimai" />
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="25,25">
+                        <StackPanel VerticalAlignment="Top">
+                            <TextBlock HorizontalAlignment="Left" Text="SMS" />
+                            <StackPanel Orientation="Horizontal">
+                                <Slider
+                                    x:Name="SmsSlider"
+                                    Width="296"
+                                    Margin="0,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top" />
+                                <TextBlock Width="30" Text="0.00" />
+                            </StackPanel>
 
+                            <TextBlock HorizontalAlignment="Left" Text="Pokalbiai" />
+                            <StackPanel Orientation="Horizontal">
+                                <Slider
+                                    x:Name="PokalbiaiSlider"
+                                    Width="296"
+                                    Margin="0,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top" />
+                                <TextBlock Width="30" Text="0.00" />
+                            </StackPanel>
+
+                            <TextBlock HorizontalAlignment="Left" Text="Internetas" />
+                            <StackPanel Orientation="Horizontal">
+                                <Slider
+                                    x:Name="InternetasSlider"
+                                    Width="296"
+                                    Margin="0,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top" />
+                                <TextBlock Width="30" Text="0.00" />
+                            </StackPanel>
+
+                            <TextBlock HorizontalAlignment="Left" Text="Kaina" />
+                            <StackPanel Orientation="Horizontal">
+                                <Slider
+                                    x:Name="KainaSlider"
+                                    Width="296"
+                                    Margin="0,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top" />
+                                <TextBlock Width="30" Text="0.00" />
+                            </StackPanel>
+
+                        </StackPanel>
+
+
+                    </Grid>
+                    <Grid Grid.Row="2" Background="#EEEEEE">
+                        <Button
+                            Width="80"
+                            Height="25"
+                            Click="Button_Click_1"
+                            Content="OK" />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </UserControl>
+        <Button
+            Width="159"
+            Margin="10,364,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="Button_Click_1"
+            Content="Pasirinkti" />
+        <Button
+            Width="159"
+            Margin="10,389,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Apskaičiuoti" />
     </Grid>
 </Window>
