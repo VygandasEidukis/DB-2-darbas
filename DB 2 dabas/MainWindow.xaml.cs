@@ -26,6 +26,8 @@ namespace DB_2_dabas
     public partial class MainWindow : Window
     {
         private bool showChoice = false;
+        public Planai planas;
+        public Planai maxValues;
         private ObservableCollection<Planai> _planais;
         
         public ObservableCollection<Planai> planais
@@ -46,6 +48,7 @@ namespace DB_2_dabas
             InitializeComponent();
             planais = GetPlanais();
             Console.WriteLine();
+            SetUpPreparePlan();
         }
 
         #region Database access
@@ -128,9 +131,48 @@ namespace DB_2_dabas
             if(showChoice)
             {
                 PasirinkimaiUC.Visibility = Visibility.Visible;
-            }else
+            }
+            else
             {
                 PasirinkimaiUC.Visibility = Visibility.Collapsed;
+            }
+            SavePreparedPlan();
+        }
+
+        private void SetUpPreparePlan()
+        {
+            planas = new Planai();
+            GetMaxValues();
+            SmsSlider.Maximum = maxValues.Sms;
+            PokalbiaiSlider.Maximum = maxValues.Pokalbiai;
+            InternetasSlider.Maximum = maxValues.Internetas;
+            KainaSlider.Maximum = maxValues.Kaina;
+        }
+
+        private void SavePreparedPlan()
+        {
+            planas.Sms = (int)SmsSlider.Value;
+            planas.Pokalbiai = (int)PokalbiaiSlider.Value;
+            planas.Internetas = (int)InternetasSlider.Value;
+            planas.Kaina = SmsSlider.Value;
+        }
+
+        private void GetMaxValues()
+        {
+            maxValues = new Planai();
+            foreach(Planai tmpPlanas in planais)
+            {
+                if (maxValues.Sms < tmpPlanas.Sms)
+                    maxValues.Sms = tmpPlanas.Sms;
+
+                if (maxValues.Pokalbiai < tmpPlanas.Pokalbiai)
+                    maxValues.Pokalbiai = tmpPlanas.Pokalbiai;
+
+                if (maxValues.Internetas < tmpPlanas.Internetas)
+                    maxValues.Internetas = tmpPlanas.Internetas;
+
+                if (maxValues.Kaina < tmpPlanas.Kaina)
+                    maxValues.Kaina = tmpPlanas.Kaina;
             }
         }
     }

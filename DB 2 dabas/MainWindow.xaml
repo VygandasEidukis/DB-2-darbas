@@ -161,7 +161,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextWrapping="Wrap" />
-        <UserControl x:Name="PasirinkimaiUC" Visibility="Visible">
+        <UserControl x:Name="PasirinkimaiUC" Visibility="Collapsed">
             <Grid
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
@@ -192,8 +192,11 @@
                                     Width="296"
                                     Margin="0,0,0,0"
                                     HorizontalAlignment="Center"
-                                    VerticalAlignment="Top" />
-                                <TextBlock Width="30" Text="0.00" />
+                                    VerticalAlignment="Top"
+                                    IsSnapToTickEnabled="True"
+                                    TickFrequency="1"
+                                    Value="0" />
+                                <TextBlock Margin="5,0,5,0" Text="{Binding ElementName=SmsSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>
 
                             <TextBlock HorizontalAlignment="Left" Text="Pokalbiai" />
@@ -203,8 +206,10 @@
                                     Width="296"
                                     Margin="0,0,0,0"
                                     HorizontalAlignment="Center"
-                                    VerticalAlignment="Top" />
-                                <TextBlock Width="30" Text="0.00" />
+                                    VerticalAlignment="Top"
+                                    IsSnapToTickEnabled="True"
+                                    TickFrequency="1" />
+                                <TextBlock Margin="5,0,5,0" Text="{Binding ElementName=PokalbiaiSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>
 
                             <TextBlock HorizontalAlignment="Left" Text="Internetas" />
@@ -214,8 +219,10 @@
                                     Width="296"
                                     Margin="0,0,0,0"
                                     HorizontalAlignment="Center"
-                                    VerticalAlignment="Top" />
-                                <TextBlock Width="30" Text="0.00" />
+                                    VerticalAlignment="Top"
+                                    IsSnapToTickEnabled="True"
+                                    TickFrequency="1" />
+                                <TextBlock Margin="5,0,5,0" Text="{Binding ElementName=InternetasSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>
 
                             <TextBlock HorizontalAlignment="Left" Text="Kaina" />
@@ -225,8 +232,10 @@
                                     Width="296"
                                     Margin="0,0,0,0"
                                     HorizontalAlignment="Center"
-                                    VerticalAlignment="Top" />
-                                <TextBlock Width="30" Text="0.00" />
+                                    VerticalAlignment="Top"
+                                    IsSnapToTickEnabled="True"
+                                    TickFrequency="0.01" />
+                                <TextBlock Margin="5,0,5,0" Text="{Binding ElementName=KainaSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>
 
                         </StackPanel>

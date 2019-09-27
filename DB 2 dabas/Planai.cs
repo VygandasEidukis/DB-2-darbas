@@ -17,8 +17,6 @@ namespace DB_2_dabas
         {
             get
             {
-                if (_Pokalbiai == 800000)
-                    return int.MaxValue;
                 return _Pokalbiai;
             }
             set { _Pokalbiai = value; }
@@ -29,8 +27,6 @@ namespace DB_2_dabas
         {
             get
             {
-                if (_Sms == 800000)
-                    return int.MaxValue;
                 return _Sms;
             }
             set { _Sms = value; }
@@ -41,8 +37,6 @@ namespace DB_2_dabas
         {
             get
             {
-                if (_Internetas == 800000)
-                    return int.MaxValue;
                 return _Internetas;
             }
             set { _Internetas = value; }
@@ -53,6 +47,10 @@ namespace DB_2_dabas
         public Planai()
         {
             selected = false;
+            Sms = 0;
+            Pokalbiai = 0;
+            Internetas = 0;
+            Kaina = 0;
         }
     }
 }
