@@ -112,12 +112,6 @@
             ItemsSource="{Binding Path=planais}"
             MouseDoubleClick="ListVisiPlanai_MouseDoubleClick" />
         <TextBlock
-            Margin="10,10,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="Operatorius"
-            TextWrapping="Wrap" />
-        <TextBlock
             Margin="10,106,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -139,27 +133,6 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="Kaina"
-            TextWrapping="Wrap" />
-        <TextBox
-            x:Name="Operatorius"
-            Width="159"
-            Height="23"
-            Margin="10,31,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            TextWrapping="Wrap" />
-        <TextBlock
-            Margin="10,57,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            TextWrapping="Wrap"><Run Text="Plano pavadinimas" /><LineBreak /><Run /></TextBlock>
-        <TextBox
-            x:Name="PlanoPavadinimas"
-            Width="159"
-            Height="23"
-            Margin="10,78,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
             TextWrapping="Wrap" />
         <UserControl x:Name="PasirinkimaiUC" Visibility="Collapsed">
             <Grid
@@ -260,10 +233,26 @@
             Click="Button_Click_1"
             Content="Pasirinkti" />
         <Button
+            Click="Button_Click_2"
             Width="159"
             Margin="10,389,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Apskaičiuoti" />
+        <TextBlock
+            Margin="48,86,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Koficientai"
+            TextWrapping="Wrap" RenderTransformOrigin="1.708,-1.695" Height="26" >
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="1.106"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
     </Grid>
 </Window>

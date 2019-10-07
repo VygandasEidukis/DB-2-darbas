@@ -29,7 +29,7 @@ namespace DB_2_dabas
         public Planai planas;
         public Planai maxValues;
         private ObservableCollection<Planai> _planais;
-        
+
         public ObservableCollection<Planai> planais
         {
             get
@@ -54,7 +54,7 @@ namespace DB_2_dabas
         #region Database access
         private ObservableCollection<Planai> GetPlanais()
         {
-            using(IDbConnection cnn = new SQLiteConnection("Data Source=./db.db;Version=3;"))
+            using (IDbConnection cnn = new SQLiteConnection("Data Source=./db.db;Version=3;"))
             {
                 var output = cnn.Query<Planai>("select * from Planai", new DynamicParameters());
                 return new ObservableCollection<Planai>(output.ToList());
@@ -82,16 +82,16 @@ namespace DB_2_dabas
         {
             (listbox as ListBox).Items.Clear();
 
-            foreach(Planai item in list)
+            foreach (Planai item in list)
             {
-                if(selection == item.selected)
+                if (selection == item.selected)
                     (listbox as ListBox).Items.Add(item);
-            }            
+            }
         }
 
         private void ListVisiPlanai_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if((sender as ListBox).SelectedItem != null)
+            if ((sender as ListBox).SelectedItem != null)
             {
                 ((sender as ListBox).SelectedItem as Planai).selected = !((sender as ListBox).SelectedItem as Planai).selected;
                 UpdateList(listVisiPlanai, _planais, false);
@@ -101,8 +101,6 @@ namespace DB_2_dabas
 
         private void Clear()
         {
-            Operatorius.Text = "";
-            PlanoPavadinimas.Text = "";
             Internetas.Text = "";
             Kaina.Text = "";
             Minutes.Text = "";
@@ -112,8 +110,6 @@ namespace DB_2_dabas
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Planai planas = new Planai();
-            planas.Operatorius = Operatorius.Text;
-            planas.PlanoPavadinimas = PlanoPavadinimas.Text;
             planas.Internetas = int.Parse(Internetas.Text);
             planas.Kaina = int.Parse(Kaina.Text);
             planas.Pokalbiai = int.Parse(Minutes.Text);
@@ -128,7 +124,7 @@ namespace DB_2_dabas
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             showChoice = !showChoice;
-            if(showChoice)
+            if (showChoice)
             {
                 PasirinkimaiUC.Visibility = Visibility.Visible;
             }
@@ -143,9 +139,16 @@ namespace DB_2_dabas
         {
             planas = new Planai();
             GetMaxValues();
+            /*
             SmsSlider.Maximum = maxValues.Sms;
             PokalbiaiSlider.Maximum = maxValues.Pokalbiai;
             InternetasSlider.Maximum = maxValues.Internetas;
+            KainaSlider.Maximum = maxValues.Kaina;*/
+
+
+            SmsSlider.Maximum = 10000;
+            PokalbiaiSlider.Maximum = 10000;
+            InternetasSlider.Maximum = 10000;
             KainaSlider.Maximum = maxValues.Kaina;
         }
 
@@ -160,7 +163,7 @@ namespace DB_2_dabas
         private void GetMaxValues()
         {
             maxValues = new Planai();
-            foreach(Planai tmpPlanas in planais)
+            foreach (Planai tmpPlanas in planais)
             {
                 if (maxValues.Sms < tmpPlanas.Sms)
                     maxValues.Sms = tmpPlanas.Sms;
@@ -174,6 +177,43 @@ namespace DB_2_dabas
                 if (maxValues.Kaina < tmpPlanas.Kaina)
                     maxValues.Kaina = tmpPlanas.Kaina;
             }
+
+
+        }
+
+        private Planai getMinVlue(Dictionary<double, Planai> obj)
+        {
+            KeyValuePair<double, Planai> bestPlanas = new KeyValuePair<double, Planai>();
+            foreach(KeyValuePair<double,Planai> pl in obj)
+            {
+                if (bestPlanas.Value == null)
+                    bestPlanas = pl;
+                if (bestPlanas.Key > pl.Key)
+                    bestPlanas = pl;
+            }
+            return (Planai)bestPlanas.Value;
+        }
+
+
+        private Planai Getbestdalykas()
+        {
+            Dictionary<double, Planai> answers = new Dictionary<double, Planai>();
+            
+            foreach(Planai pl in planais)
+            {
+                answers.Add(Math.Sqrt(
+                  double.Parse(Pokalbiai.Text) * Math.Pow(SmsSlider.Value - pl.Sms, 2)
+                + double.Parse(Minutes.Text) * Math.Pow(PokalbiaiSlider.Value - pl.Pokalbiai, 2)
+                + double.Parse(Internetas.Text) * Math.Pow(InternetasSlider.Value - pl.Internetas, 2) 
+                + double.Parse(Kaina.Text) * Math.Pow(KainaSlider.Value - pl.Kaina, 2)), pl);
+            }
+            return getMinVlue(answers);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            listTinkamiausiPlanai.Items.Clear();
+            listTinkamiausiPlanai.Items.Add(Getbestdalykas());
         }
     }
 }
