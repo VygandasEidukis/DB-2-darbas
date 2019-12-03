@@ -76,6 +76,14 @@ namespace DB_2_dabas
         {
             Regex regex = new Regex(@"^[a-zA-Z_ ]*$");
             e.Handled = regex.IsMatch(e.Text);
+            try
+            {
+                e.Handled = !(double.Parse(e.Text) >= 0);
+            }
+            catch
+            {
+
+            }
         }
 
         private void UpdateList(object listbox, ObservableCollection<Planai> list, bool selection)
@@ -139,16 +147,10 @@ namespace DB_2_dabas
         {
             planas = new Planai();
             GetMaxValues();
-            /*
+
             SmsSlider.Maximum = maxValues.Sms;
             PokalbiaiSlider.Maximum = maxValues.Pokalbiai;
             InternetasSlider.Maximum = maxValues.Internetas;
-            KainaSlider.Maximum = maxValues.Kaina;*/
-
-
-            SmsSlider.Maximum = 10000;
-            PokalbiaiSlider.Maximum = 10000;
-            InternetasSlider.Maximum = 10000;
             KainaSlider.Maximum = maxValues.Kaina;
         }
 
@@ -214,6 +216,18 @@ namespace DB_2_dabas
         {
             listTinkamiausiPlanai.Items.Clear();
             listTinkamiausiPlanai.Items.Add(Getbestdalykas());
+        }
+
+        private void Pokalbiai_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if((sender as TextBox).Text == "")
+                {
+                    (sender as TextBox).Text = 1.ToString();
+                }
+            }
+            catch { }
         }
     }
 }
