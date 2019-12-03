@@ -50,38 +50,46 @@
             x:Name="Pokalbiai"
             Width="159"
             Height="23"
-            Margin="10,127,0,0"
+            Margin="15,57,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             PreviewTextInput="TextBox_PreviewTextInput"
+            Text="1"
+            TextChanged="Pokalbiai_TextChanged"
             TextWrapping="Wrap" />
 
         <TextBox
             x:Name="Minutes"
             Width="159"
             Height="23"
-            Margin="10,176,0,0"
+            Margin="15,106,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             PreviewTextInput="TextBox_PreviewTextInput"
+            Text="1"
+            TextChanged="Pokalbiai_TextChanged"
             TextWrapping="Wrap" />
         <TextBox
             x:Name="Internetas"
             Width="159"
             Height="23"
-            Margin="10,225,0,0"
+            Margin="15,155,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             PreviewTextInput="TextBox_PreviewTextInput"
+            Text="1"
+            TextChanged="Pokalbiai_TextChanged"
             TextWrapping="Wrap" />
         <TextBox
             x:Name="Kaina"
             Width="159"
             Height="23"
-            Margin="10,274,0,0"
+            Margin="15,204,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             PreviewTextInput="TextBox_PreviewTextInput"
+            Text="1"
+            TextChanged="Pokalbiai_TextChanged"
             TextWrapping="Wrap" />
         <ListBox
             x:Name="listTinkamiausiPlanai"
@@ -93,14 +101,6 @@
             VerticalAlignment="Top"
             ItemTemplate="{StaticResource listBoxTemplate}"
             MouseDoubleClick="ListVisiPlanai_MouseDoubleClick" />
-        <Button
-            Width="159"
-            Margin="10,302,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Click="Button_Click"
-            Content="Pridėti"
-            RenderTransformOrigin="0.507,-1.433" />
         <ListBox
             x:Name="listVisiPlanai"
             Width="295"
@@ -112,63 +112,38 @@
             ItemsSource="{Binding Path=planais}"
             MouseDoubleClick="ListVisiPlanai_MouseDoubleClick" />
         <TextBlock
-            Margin="10,10,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="Operatorius"
-            TextWrapping="Wrap" />
-        <TextBlock
-            Margin="10,106,0,0"
+            Margin="15,36,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="SMS"
             TextWrapping="Wrap" />
         <TextBlock
-            Margin="10,155,0,0"
+            Margin="15,85,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextWrapping="Wrap"><Run Text="Minut" /><Run Text="ės" /></TextBlock>
         <TextBlock
-            Margin="10,204,0,0"
+            Margin="15,134,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="Internetas"
             TextWrapping="Wrap" />
         <TextBlock
-            Margin="10,253,0,0"
+            Margin="15,183,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="Kaina"
             TextWrapping="Wrap" />
-        <TextBox
-            x:Name="Operatorius"
-            Width="159"
-            Height="23"
-            Margin="10,31,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            TextWrapping="Wrap" />
-        <TextBlock
-            Margin="10,57,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            TextWrapping="Wrap"><Run Text="Plano pavadinimas" /><LineBreak /><Run /></TextBlock>
-        <TextBox
-            x:Name="PlanoPavadinimas"
-            Width="159"
-            Height="23"
-            Margin="10,78,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            TextWrapping="Wrap" />
-        <UserControl x:Name="PasirinkimaiUC" Visibility="Collapsed">
+        <UserControl x:Name="PasirinkimaiUC" Visibility="Visible">
             <Grid
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Background="#33000000">
                 <Grid
-                    MinWidth="200"
-                    MinHeight="100"
+                    Width="431"
+                    MinWidth="300"
+                    MinHeight="250"
+                    Margin="182,84,179,84"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Background="#FFFFFF">
@@ -193,10 +168,14 @@
                                     Margin="0,0,0,0"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Top"
+                                    IsMoveToPointEnabled="True"
                                     IsSnapToTickEnabled="True"
-                                    TickFrequency="1"
                                     Value="0" />
-                                <TextBlock Margin="5,0,5,0" Text="{Binding ElementName=SmsSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox
+                                    Width="80"
+                                    Margin="5,0,5,0"
+                                    Text="{Binding ElementName=SmsSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                    TextChanged="Pokalbiai_TextChanged" />
                             </StackPanel>
 
                             <TextBlock HorizontalAlignment="Left" Text="Pokalbiai" />
@@ -207,9 +186,14 @@
                                     Margin="0,0,0,0"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Top"
+                                    IsMoveToPointEnabled="True"
                                     IsSnapToTickEnabled="True"
                                     TickFrequency="1" />
-                                <TextBlock Margin="5,0,5,0" Text="{Binding ElementName=PokalbiaiSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox
+                                    Width="80"
+                                    Margin="5,0,5,0"
+                                    Text="{Binding ElementName=PokalbiaiSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                    TextChanged="Pokalbiai_TextChanged" />
                             </StackPanel>
 
                             <TextBlock HorizontalAlignment="Left" Text="Internetas" />
@@ -220,9 +204,14 @@
                                     Margin="0,0,0,0"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Top"
+                                    IsMoveToPointEnabled="True"
                                     IsSnapToTickEnabled="True"
                                     TickFrequency="1" />
-                                <TextBlock Margin="5,0,5,0" Text="{Binding ElementName=InternetasSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox
+                                    Width="80"
+                                    Margin="5,0,5,0"
+                                    Text="{Binding ElementName=InternetasSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                    TextChanged="Pokalbiai_TextChanged" />
                             </StackPanel>
 
                             <TextBlock HorizontalAlignment="Left" Text="Kaina" />
@@ -233,9 +222,14 @@
                                     Margin="0,0,0,0"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Top"
+                                    IsMoveToPointEnabled="True"
                                     IsSnapToTickEnabled="True"
                                     TickFrequency="0.01" />
-                                <TextBlock Margin="5,0,5,0" Text="{Binding ElementName=KainaSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox
+                                    Width="80"
+                                    Margin="5,0,5,0"
+                                    Text="{Binding ElementName=KainaSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                    TextChanged="Pokalbiai_TextChanged" />
                             </StackPanel>
 
                         </StackPanel>
@@ -264,6 +258,24 @@
             Margin="10,389,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            Click="Button_Click_2"
             Content="Apskaičiuoti" />
+        <TextBlock
+            Height="26"
+            Margin="53,16,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="1.708,-1.695"
+            Text="Koficientai"
+            TextWrapping="Wrap">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform Angle="1.106" />
+                    <TranslateTransform />
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
     </Grid>
 </Window>
